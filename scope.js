@@ -83,3 +83,144 @@
 // console.log(verdict);
 
 // // predicted output: "the weapon is the revolver" the variable scenario is a const however its properties can be reassigned, which is what happens here.
+
+// Episode 6
+// let murderer = 'Colonel Mustard';
+//
+// const changeMurderer = function() {
+//   murderer = 'Mr. Green';
+//
+//   const plotTwist = function() {
+//     murderer = 'Mrs. White';
+//   }
+//
+//   plotTwist();
+// }
+//
+// const declareMurderer = function () {
+//   return `The murderer is ${murderer}.`;
+// }
+//
+// changeMurderer();
+// const verdict = declareMurderer();
+// console.log(verdict);
+//
+// / // predicted output: "the murderer is Mrs. White" the murderer variable is reinitialised as a global variable twice, calling the function declareMurderer returns the last value that was assigned to murderer.
+
+// // Episode 7
+// let murderer = 'Professor Plum';
+//
+// const changeMurderer = function() {
+//   murderer = 'Mr. Green';
+//
+//   const plotTwist = function() {
+//     let murderer = 'Colonel Mustard';
+//
+//     const unexpectedOutcome = function() {
+//       murderer = 'Miss Scarlet';
+//     }
+//
+//     unexpectedOutcome();
+//   }
+//
+//   plotTwist();
+// }
+//
+// const declareMurderer = function() {
+//   return `The murderer is ${murderer}.`;
+// }
+//
+// changeMurderer();
+// const verdict = declareMurderer();
+// console.log(verdict);
+
+// / // predicted output: "the murderer is Mr. Green". murderer = "Mr.Green" is outside the scope of the other two functions plotTwist and unexpectedOutcome, therefore calling the function changeMurderer will just return Mr.Green as it is of a higher hierarchy.
+
+// Episode 8
+// const scenario = {
+//   murderer: 'Mrs. Peacock',
+//   room: 'Conservatory',
+//   weapon: 'Lead Pipe'
+// };
+//
+// const changeScenario = function() {
+//   scenario.murderer = 'Mrs. Peacock';
+//   scenario.room = 'Dining Room';
+//
+//   const plotTwist = function(room) {
+//     if (scenario.room === room) {
+//       scenario.murderer = 'Colonel Mustard';
+//     }
+//
+//     const unexpectedOutcome = function(murderer) {
+//       if (scenario.murderer === murderer) {
+//         scenario.weapon = 'Candle Stick';
+//       }
+//     }
+//
+//     unexpectedOutcome('Colonel Mustard');
+//   }
+//
+//   plotTwist('Dining Room');
+// }
+//
+// const declareWeapon = function() {
+//   return `The weapon is ${scenario.weapon}.`
+// }
+//
+// changeScenario();
+// const verdict = declareWeapon();
+// console.log(verdict);
+
+// predicted output: "the weapon is Candle Stick" the properties of the scenario object are reassigned at the beginning of the function. Since the arguments passed match the conditions of both conditional statements, the murderer property and the weapon property are reassigned, whcih means that the weapon will be the last one that was assigned in the unexpectedOutcome function.
+
+
+// Episode 9
+// let murderer = 'Professor Plum';
+//
+// if (murderer === 'Professor Plum') {
+//   let murderer = 'Mrs. Peacock';
+// }
+//
+// const declareMurderer = function() {
+//   return `The murderer is ${murderer}.`;
+// }
+//
+// const verdict = declareMurderer();
+// console.log(verdict);
+
+// predicted output: "the murderer is professor Plum". The variable murderer  is reinitialised  but only in the if statement block. when the function declareMurderer is called, the variable accessed is the one that was declared in the global object.
+
+
+// Own Episode
+
+const scenario = {
+  murderer: "Matteo",
+  weapon: "knife",
+  room: "living room"
+};
+
+const changeScenario = function () {
+
+  const changeRoom = function(weapon){
+    if (scenario.weapon === weapon) {
+    scenario.room = "bathroom";}
+
+    const changeMurderer = function(room) {
+      if (scenario.room === room) {
+      scenario.murderer = "Harrison";}
+
+    }
+
+    changeMurderer("bathroom");
+    
+  };
+
+  changeRoom("knife");
+
+};
+
+changeScenario()
+
+const verdict = `${scenario.murderer} killed the victim with a ${scenario.weapon} in the ${scenario.room}`
+console.log(verdict);
